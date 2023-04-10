@@ -17,17 +17,33 @@ CommandGPT is a simple command line tool that leverages GPT-3.5 to convert betwe
 
 1. Clone this repository:
 
-git clone https://github.com/ersinkoc/CommandGPT.git
+```git clone https://github.com/ersinkoc/CommandGPT.git```
 
 
 2. Change to the cloned directory:
 
-cd CommandGPT
+```cd CommandGPT```
 
 3. Install the required dependencies:
 
-pip install openai
+```pip install openai```
 
+## API KEY
+
+For Unix-like systems (Linux, macOS):
+```
+export OPENAI_API_KEY=your_api_key
+```
+
+For Windows (Command Prompt):
+```
+set OPENAI_API_KEY=your_api_key
+```
+
+For Windows (PowerShell):
+```
+$env:OPENAI_API_KEY="your_api_key"
+```
 
 ## Usage
 
