@@ -26,10 +26,18 @@ def main():
     parser = argparse.ArgumentParser(description='CommandGPT: Convert between natural language and command line scripts')
     parser.add_argument('text', type=str, help='The text to convert')
     parser.add_argument('-t', '--type', type=str, choices=['NL2PS', 'NL2Bash', 'Bash2PS', 'PS2NL', 'Bash2NL'], required=True, help='The type of conversion')
-    parser.add_argument('-k', '--key', type=str, required=True, help='Your OpenAI API key')
+    parser.add_argument('-k', '--key', type=str, help='Your OpenAI API key (optional if set as an environment variable: OPENAI_API_KEY)')
     
     args = parser.parse_args()
-    
+
+    if args.key:
+        api_key = args.key
+    elif 'OPENAI_API_KEY' in os.environ:
+        api_key = os.environ['OPENAI_API_KEY']
+    else:
+        print("Error: OpenAI API key not provided and environment variable OPENAI_API_KEY is not set.")
+        return
+
     prompt_map = {
         'NL2PS': 'Translate the following natural language text to a PowerShell command: {}',
         'NL2Bash': 'Translate the following natural language text to a Bash command: {}',
@@ -38,7 +46,7 @@ def main():
         'Bash2NL': 'Explain the following Bash command in natural language: {}'
     }
 
-    init_openai(args.key)
+    init_openai(api_key)
     prompt = prompt_map[args.type].format(args.text)
     result = convert_text(prompt)
 
