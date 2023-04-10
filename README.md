@@ -28,7 +28,7 @@ CommandGPT is a simple command line tool that leverages GPT-3.5 to convert betwe
 
 ```pip install openai```
 
-## API KEY
+## Set Api Key
 
 For Unix-like systems (Linux, macOS):
 ```
